@@ -1,6 +1,6 @@
 # OptimizingWandererRoutes
 
-OptimizingWandererRoutes is a programm written in C# .Net 4.5 and tries to solve the wanderer problem [Cipsoft](https://www.cipsoft.com) gave me for application.
+OptimizingWandererRoutes is a programm written in C# .Net 4.8 and tries to solve the wanderer problem [Cipsoft](https://www.cipsoft.com) gave me for application.
 The definition of the wanderer problem can be found [here](https://github.com/SeppPenner/OptimizingWandererRoutes/blob/master/Hausaufgabe-Programmierer.pdf).
 
 [![Build status](https://ci.appveyor.com/api/projects/status/lre75t0car306whc?svg=true)](https://ci.appveyor.com/project/SeppPenner/optimizingwandererroutes)
@@ -8,6 +8,7 @@ The definition of the wanderer problem can be found [here](https://github.com/Se
 [![GitHub forks](https://img.shields.io/github/forks/SeppPenner/OptimizingWandererRoutes.svg)](https://github.com/SeppPenner/OptimizingWandererRoutes/network)
 [![GitHub stars](https://img.shields.io/github/stars/SeppPenner/OptimizingWandererRoutes.svg)](https://github.com/SeppPenner/OptimizingWandererRoutes/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/SeppPenner/OptimizingWandererRoutes/master/License.txt)
+[![Known Vulnerabilities](https://snyk.io/test/github/SeppPenner/OptimizingWandererRoutes/badge.svg)](https://snyk.io/test/github/SeppPenner/OptimizingWandererRoutes)
 
 ## The algorithm
 ![Explanation1](https://github.com/SeppPenner/OptimizingWandererRoutes/blob/master/Explanation1.png "Explanation1")
@@ -26,4 +27,5 @@ All these steps are explained in the Excel file, too: [Excel file](https://githu
 Change history
 --------------
 
+* **Version 1.0.0.1 (2019-05-05)** : Updated .Net version to 4.8.
 * **Version 1.0.0.0 (2018-08-04)** : 1.0 release.
