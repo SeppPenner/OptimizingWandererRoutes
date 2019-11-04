@@ -7,7 +7,7 @@ The definition of the wanderer problem can be found [here](https://github.com/Se
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/OptimizingWandererRoutes.svg)](https://github.com/SeppPenner/OptimizingWandererRoutes/issues)
 [![GitHub forks](https://img.shields.io/github/forks/SeppPenner/OptimizingWandererRoutes.svg)](https://github.com/SeppPenner/OptimizingWandererRoutes/network)
 [![GitHub stars](https://img.shields.io/github/stars/SeppPenner/OptimizingWandererRoutes.svg)](https://github.com/SeppPenner/OptimizingWandererRoutes/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/SeppPenner/OptimizingWandererRoutes/master/License.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/SeppPenner/OptimizingWandererRoutes/master/License.txt)
 [![Known Vulnerabilities](https://snyk.io/test/github/SeppPenner/OptimizingWandererRoutes/badge.svg)](https://snyk.io/test/github/SeppPenner/OptimizingWandererRoutes)
 
 ## The algorithm
