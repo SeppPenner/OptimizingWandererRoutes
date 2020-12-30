@@ -1,11 +1,21 @@
-﻿using System;
-using System.IO;
-using OptimizingWandererRoutes.Exceptions;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IOptimizer.cs" company="Hämmer Electronics">
+//   Copyright (c) All rights reserved.
+// </copyright>
+// <summary>
+//   Interface to optimize the wanderers route according to their preferences.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace OptimizingWandererRoutes
 {
+    using System;
+    using System.IO;
+
+    using OptimizingWandererRoutes.Exceptions;
+
     /// <summary>
-    ///     Class to optimize the wanderers route according to their preferences.
+    ///     Interface to optimize the wanderers route according to their preferences.
     /// </summary>
     public interface IOptimizer
     {

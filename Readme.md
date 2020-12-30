@@ -1,6 +1,6 @@
 # OptimizingWandererRoutes
 
-OptimizingWandererRoutes is a programm written in C# .Net 4.8 and tries to solve the wanderer problem [Cipsoft](https://www.cipsoft.com) gave me for application.
+OptimizingWandererRoutes is a programm written in C# .Net 5.0 and tries to solve the wanderer problem [Cipsoft](https://www.cipsoft.com) gave me for application.
 The definition of the wanderer problem can be found [here](https://github.com/SeppPenner/OptimizingWandererRoutes/blob/master/Hausaufgabe-Programmierer.pdf).
 
 [![Build status](https://ci.appveyor.com/api/projects/status/lre75t0car306whc?svg=true)](https://ci.appveyor.com/project/SeppPenner/optimizingwandererroutes)
@@ -27,6 +27,4 @@ All these steps are explained in the Excel file, too: [Excel file](https://githu
 Change history
 --------------
 
-* **Version 1.0.1.0 (2019-10-27)** : Updated nuget packages, added GitVersionTask.
-* **Version 1.0.0.1 (2019-05-05)** : Updated .Net version to 4.8.
-* **Version 1.0.0.0 (2018-08-04)** : 1.0 release.
+See the [Changelog](https://github.com/SeppPenner/OptimizingWandererRoutes/blob/master/Changelog.md).

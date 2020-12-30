@@ -1,8 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Bucket.cs" company="Hämmer Electronics">
+//   Copyright (c) All rights reserved.
+// </copyright>
+// <summary>
+//   The bucket class to split the initial <see cref="List{T}" /> into different buckets.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace OptimizingWandererRoutes
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     /// The bucket class to split the initial <see cref="List{T}"/> into different buckets.
     /// </summary>
@@ -11,7 +20,7 @@ namespace OptimizingWandererRoutes
         /// <summary>
         /// The internal elements of the bucket. Represents a list of stages in kilometers for the wanderer's route.
         /// </summary>
-        private readonly List<int> _elements = new List<int>();
+        private readonly List<int> elements = new List<int>();
 
         /// <summary>
         /// Gets the leftmost element of the bucket.
@@ -19,12 +28,13 @@ namespace OptimizingWandererRoutes
         /// <returns>Returns the leftmost element of the bucket or -1 if the size of the bucket is 0.</returns>
         public int GetLeftMostElement()
         {
-            //First element can't be found if the bucket is empty.
-            if (Size() == 0)
+            // First element can't be found if the bucket is empty.
+            if (this.Size() == 0)
             {
                 return -1;
             }
-            return _elements.First();
+
+            return this.elements.First();
         }
 
         /// <summary>
@@ -33,12 +43,13 @@ namespace OptimizingWandererRoutes
         /// <returns>Returns the rightmost element of the bucket or -1 if the size of the bucket is 0.</returns>
         public int GetRightMostElement()
         {
-            //Last element can't be found if the bucket is empty.
-            if (Size() == 0)
+            // Last element can't be found if the bucket is empty.
+            if (this.Size() == 0)
             {
                 return -1;
             }
-            return _elements.Last();
+
+            return this.elements.Last();
         }
 
         /// <summary>
@@ -48,7 +59,7 @@ namespace OptimizingWandererRoutes
         // ReSharper disable once MemberCanBePrivate.Global
         public int Size()
         {
-            return _elements.Count;
+            return this.elements.Count;
         }
 
         /// <summary>
@@ -57,7 +68,7 @@ namespace OptimizingWandererRoutes
         /// <returns>Returns the sum of the bucket's elements' values.</returns>
         public int Sum()
         {
-            return _elements.Sum();
+            return this.elements.Sum();
         }
 
         /// <summary>
@@ -66,13 +77,14 @@ namespace OptimizingWandererRoutes
         /// <returns>Returns the leftmost element of the bucket or -1 if the bucket has only one element left.</returns>
         public int RemoveLeftMostElement()
         {
-            //Cannot remove the rightmost item if the bucket is empty.
-            if (Size() <= 1)
+            // Cannot remove the rightmost item if the bucket is empty.
+            if (this.Size() <= 1)
             {
                 return -1;
             }
-            var element = _elements[0];
-            _elements.RemoveAt(0);
+
+            var element = this.elements[0];
+            this.elements.RemoveAt(0);
             return element;
         }
 
@@ -82,13 +94,14 @@ namespace OptimizingWandererRoutes
         /// <returns>Returns the rightmost element of the bucket or -1 if the bucket has only one element left.</returns>
         public int RemoveRightMostElement()
         {
-            //Cannot remove the rightmost item if the bucket is empty.
-            if (Size() <= 1)
+            // Cannot remove the rightmost item if the bucket is empty.
+            if (this.Size() <= 1)
             {
                 return -1;
             }
-            var element = _elements[Size() - 1];
-            _elements.RemoveAt(Size() - 1);
+
+            var element = this.elements[this.Size() - 1];
+            this.elements.RemoveAt(this.Size() - 1);
             return element;
         }
 
@@ -98,7 +111,7 @@ namespace OptimizingWandererRoutes
         /// <param name="element">The element to add.</param>
         public void AddLeftMostElement(int element)
         {
-            _elements.Insert(0, element);
+            this.elements.Insert(0, element);
         }
 
         /// <summary>
@@ -107,7 +120,7 @@ namespace OptimizingWandererRoutes
         /// <param name="element">The element to add.</param>
         public void AddRightMostElement(int element)
         {
-            _elements.Add(element);
+            this.elements.Add(element);
         }
 
         /// <summary>
@@ -116,7 +129,7 @@ namespace OptimizingWandererRoutes
         /// <returns>Returns a nice string representation of the bucket.</returns>
         public override string ToString()
         {
-            return "[" + string.Join(",", _elements.Select(n => n.ToString())) + "]";
+            return "[" + string.Join(",", this.elements.Select(n => n.ToString())) + "]";
         }
     }
 }
