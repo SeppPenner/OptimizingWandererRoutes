@@ -1,6 +1,6 @@
 # OptimizingWandererRoutes
 
-OptimizingWandererRoutes is a programm written in C# .Net 5.0 and tries to solve the wanderer problem [Cipsoft](https://www.cipsoft.com) gave me for application.
+OptimizingWandererRoutes is a programm written in C# and tries to solve the wanderer problem [Cipsoft](https://www.cipsoft.com) gave me for application.
 The definition of the wanderer problem can be found [here](https://github.com/SeppPenner/OptimizingWandererRoutes/blob/master/Hausaufgabe-Programmierer.pdf).
 
 [![Build status](https://ci.appveyor.com/api/projects/status/lre75t0car306whc?svg=true)](https://ci.appveyor.com/project/SeppPenner/optimizingwandererroutes)
