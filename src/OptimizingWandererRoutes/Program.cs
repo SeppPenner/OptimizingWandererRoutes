@@ -27,7 +27,7 @@ namespace OptimizingWandererRoutes
             try
             {
                 Console.WriteLine("Please type in a file name to read the data from and press return:");
-                var fileName = Console.ReadLine();
+                var fileName = Console.ReadLine() ?? string.Empty;
                 IOptimizer optimizer = new Optimizer();
                 optimizer.ReadFile(fileName);
                 optimizer.Optimize();
