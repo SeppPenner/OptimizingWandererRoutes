@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="OptimizeNotCalledException.cs" company="Hämmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
@@ -7,31 +7,26 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace OptimizingWandererRoutes.Exceptions
+namespace OptimizingWandererRoutes.Exceptions;
+
+/// <inheritdoc cref="Exception"/>
+/// <summary>
+/// The exception that is thrown whenever the optimize function was not called yet.
+/// </summary>
+public class OptimizeNotCalledException : Exception
 {
-    using System;
+    /// <inheritdoc cref="Exception"/>
+    public OptimizeNotCalledException()
+    {
+    }
 
     /// <inheritdoc cref="Exception"/>
-    /// <summary>
-    /// The exception that is thrown whenever the optimize function was not called yet.
-    /// </summary>
-    public class OptimizeNotCalledException : Exception
+    public OptimizeNotCalledException(string message) : base(message)
     {
-        /// <inheritdoc cref="Exception"/>
-        // ReSharper disable once UnusedMember.Global
-        public OptimizeNotCalledException()
-        {
-        }
+    }
 
-        /// <inheritdoc cref="Exception"/>
-        public OptimizeNotCalledException(string message) : base(message)
-        {
-        }
-
-        /// <inheritdoc cref="Exception"/>
-        // ReSharper disable once UnusedMember.Global
-        public OptimizeNotCalledException(string message, Exception inner) : base(message, inner)
-        {
-        }
+    /// <inheritdoc cref="Exception"/>
+    public OptimizeNotCalledException(string message, Exception inner) : base(message, inner)
+    {
     }
 }

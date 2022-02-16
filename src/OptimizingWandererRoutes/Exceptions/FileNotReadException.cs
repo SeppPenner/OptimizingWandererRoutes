@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="FileNotReadException.cs" company="Hämmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
@@ -7,32 +7,26 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+namespace OptimizingWandererRoutes.Exceptions;
 
-namespace OptimizingWandererRoutes.Exceptions
+/// <inheritdoc cref="Exception"/>
+/// <summary>
+/// The exception that is thrown whenever the file was not read yet.
+/// </summary>
+public class FileNotReadException : Exception
 {
-    using System;
+    /// <inheritdoc cref="Exception"/>
+    public FileNotReadException()
+    {
+    }
 
     /// <inheritdoc cref="Exception"/>
-    /// <summary>
-    /// The exception that is thrown whenever the file was not read yet.
-    /// </summary>
-    public class FileNotReadException : Exception
+    public FileNotReadException(string message) : base(message)
     {
-        /// <inheritdoc cref="Exception"/>
-        // ReSharper disable once UnusedMember.Global
-        public FileNotReadException()
-        {
-        }
+    }
 
-        /// <inheritdoc cref="Exception"/>
-        public FileNotReadException(string message) : base(message)
-        {
-        }
-
-        /// <inheritdoc cref="Exception"/>
-        // ReSharper disable once UnusedMember.Global
-        public FileNotReadException(string message, Exception inner) : base(message, inner)
-        {
-        }
+    /// <inheritdoc cref="Exception"/>
+    public FileNotReadException(string message, Exception inner) : base(message, inner)
+    {
     }
 }
