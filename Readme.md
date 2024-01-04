@@ -9,6 +9,9 @@ The definition of the wanderer problem can be found [here](https://github.com/Se
 [![GitHub stars](https://img.shields.io/github/stars/SeppPenner/OptimizingWandererRoutes.svg)](https://github.com/SeppPenner/OptimizingWandererRoutes/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/SeppPenner/OptimizingWandererRoutes/master/License.txt)
 [![Known Vulnerabilities](https://snyk.io/test/github/SeppPenner/OptimizingWandererRoutes/badge.svg)](https://snyk.io/test/github/SeppPenner/OptimizingWandererRoutes)
+[![Blogger](https://img.shields.io/badge/Follow_me_on-blogger-orange)](https://franzhuber23.blogspot.de/)
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?logo=patreon&logoColor=white)](https://patreon.com/SeppPennerOpenSourceDevelopment)
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?logo=paypal&logoColor=white)](https://paypal.me/th070795)
 
 ## The algorithm
 ![Explanation1](https://github.com/SeppPenner/OptimizingWandererRoutes/blob/master/Explanation1.png "Explanation1")
