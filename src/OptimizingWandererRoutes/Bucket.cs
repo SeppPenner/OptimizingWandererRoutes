@@ -73,7 +73,7 @@ public class Bucket
     /// <returns>Returns the leftmost element of the bucket or -1 if the bucket has only one element left.</returns>
     public int RemoveLeftMostElement()
     {
-        // Cannot remove the rightmost item if the bucket is empty.
+        // Cannot remove the leftmost item if it is the last stage the bucket has left.
         if (this.Size() <= 1)
         {
             return -1;
@@ -90,7 +90,7 @@ public class Bucket
     /// <returns>Returns the rightmost element of the bucket or -1 if the bucket has only one element left.</returns>
     public int RemoveRightMostElement()
     {
-        // Cannot remove the rightmost item if the bucket is empty.
+        // Cannot remove the rightmost item if it is the last stage the bucket has left.
         if (this.Size() <= 1)
         {
             return -1;

@@ -3,7 +3,7 @@
 //   Copyright (c) All rights reserved.
 // </copyright>
 // <summary>
-//   The exception that is thrown whenever the file was not read yet.
+//   The exception that is thrown whenever the input file holds fewer stages than it announces.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ namespace OptimizingWandererRoutes.Exceptions;
 
 /// <inheritdoc cref="Exception"/>
 /// <summary>
-/// The exception that is thrown whenever the file was not read yet.
+/// The exception that is thrown whenever the input file holds fewer stages than it announces.
 /// </summary>
 public class TooLessStagesException : Exception
 {

@@ -47,7 +47,7 @@ public class Optimizer : IOptimizer
     private bool readFileCalled;
 
     /// <summary>
-    /// The stages,
+    /// The stages.
     /// </summary>
     private List<int> stages = new();
 
@@ -109,8 +109,8 @@ public class Optimizer : IOptimizer
 
     /// <inheritdoc cref="IOptimizer"/>
     /// <summary>
-    ///     Reads an input file. Throws an <see cref="Exception" /> of type if <see cref="FileNotFoundException" /> if the
-    ///     given file name was not found. Throws am <see cref="Exception"/> of type <see cref="TooLessStagesException"/> if
+    ///     Reads an input file. Throws an <see cref="Exception" /> of type <see cref="FileNotFoundException" /> if the
+    ///     given file name was not found. Throws an <see cref="Exception"/> of type <see cref="TooLessStagesException"/> if
     ///     the number of stages exceeds the available stages in the file.
     /// </summary>
     /// <param name="fileName">The input file to be read.</param>
@@ -120,7 +120,7 @@ public class Optimizer : IOptimizer
         // Check if the file exists
         if (!File.Exists(fileName))
         {
-            throw new FileNotFoundException("The file does not exists");
+            throw new FileNotFoundException("The file does not exist");
         }
 
         var counter = 0;
@@ -136,7 +136,7 @@ public class Optimizer : IOptimizer
                     this.numberOfStages = Convert.ToInt32(line);
                     break;
                 case 1:
-                    // Read number of days from the first line in the file
+                    // Read number of days from the second line in the file
                     this.numberOfDays = Convert.ToInt32(line);
                     break;
                 default:
@@ -254,8 +254,9 @@ public class Optimizer : IOptimizer
         var counter = 0;
         foreach (var stage in this.stages)
         {
-            // Special case if the elements per bucket is 1 and it's the last possible bucket: Only add one stage and reset counter
-            if (elementsPerBucketInt == 1 && this.buckets.Count == this.numberOfDays)
+            // Special case if the last possible bucket is already open: Add the stage there and reset counter.
+            // A new bucket at this point would hand the wanderer a day that was never asked for
+            if (this.buckets.Count == this.numberOfDays)
             {
                 // Add the stage as rightmost element to the last bucket
                 this.buckets[^1].AddRightMostElement(stage);

@@ -28,8 +28,8 @@ public interface IOptimizer
     void Optimize();
 
     /// <summary>
-    ///     Reads an input file. Throws an <see cref="Exception" /> of type if <see cref="FileNotFoundException" /> if the
-    ///     given file name was not found. Throws am <see cref="Exception"/> of type <see cref="TooLessStagesException"/> if
+    ///     Reads an input file. Throws an <see cref="Exception" /> of type <see cref="FileNotFoundException" /> if the
+    ///     given file name was not found. Throws an <see cref="Exception"/> of type <see cref="TooLessStagesException"/> if
     ///     the number of stages exceeds the available stages in the file.
     /// </summary>
     /// <param name="fileName">The input file to be read.</param>

@@ -19,7 +19,7 @@ installer: no `GeneratePackageOnBuild`, no push script, no Inno Setup, no publis
 
 One solution `src/OptimizingWandererRoutes.sln` with exactly one project:
 
-- `src/OptimizingWandererRoutes/OptimizingWandererRoutes.csproj`, `OutputType` `WinExe`, the whole
+- `src/OptimizingWandererRoutes/OptimizingWandererRoutes.csproj`, `OutputType` `Exe`, the whole
   program.
 
 Layout inside `src/OptimizingWandererRoutes`:
@@ -96,21 +96,28 @@ Follow the surrounding code, it is consistent throughout every file:
 
 Do not silently "clean up" these, they are existing behaviour:
 
-- **`OutputType` is `WinExe` although this is a console program.** The built exe carries the
-  Windows GUI subsystem (PE subsystem `2`), so a double click in the Explorer opens no console
-  window at all: `Console.WriteLine` goes nowhere, `Console.ReadLine` returns `null` immediately and
-  the program ends without a visible trace. Started from an existing console it works, because the
-  process inherits that console. `Exe` would be the correct value.
+- **`OutputType` has to stay `Exe`.** Up to version 1.0.7.0 it was `WinExe`, which gave the built
+  exe the Windows GUI subsystem (PE subsystem `2`). A double click in the Explorer then opened no
+  console at all: `Console.WriteLine` went nowhere, `Console.ReadLine` returned `null` immediately
+  and the program ended without a visible trace. Only a start from an already existing console
+  worked, because the process inherits that console. Do not set it back.
 - **The input files are not copied to the output directory.** `in.txt` to `in4.txt` have no
   `CopyToOutputDirectory`, so `bin/Release/net9.0` contains only the assemblies. The program
   resolves the typed file name against the current working directory, which means it has to be
   started from `src/OptimizingWandererRoutes` for a bare `in2.txt` to be found, or the full path has
   to be typed.
-- **More days than asked for.** `FillBuckets` computes the elements per bucket once and then opens a
-  new bucket whenever that count is reached. Only the case of exactly one element per bucket checks
-  against `numberOfDays`, so any input whose stage count is not a multiple of the day count can
-  produce more buckets than there are days: 5 stages over 2 days print a `3.Tag`, 7 stages over 3
-  days print a `4.Tag`. The four `in*.txt` files do not hit it.
+- **The last day swallows the rest.** `FillBuckets` computes the elements per bucket once and then
+  opens a new bucket whenever that count is reached, but only while fewer buckets than
+  `numberOfDays` exist. As soon as the last day is open, every remaining stage is appended to it.
+  That guard used to apply to the case of exactly one element per bucket only, which is why version
+  1.0.7.0 and earlier printed a `3.Tag` for 5 stages over 2 days and a `4.Tag` for 7 stages over 3
+  days. Keep the guard in front of all other cases.
+- **The optimization is a heuristic, not an exact solution.** `OptimizeRoutes` only ever moves the
+  outermost stage between two neighbouring days and stops as soon as no single move improves
+  anything, so it finds a local optimum. For the stages 1 to 7 over 3 days it reports a maximum of
+  13 km while 11 km is possible. The PDF example in `in2.txt` happens to come out optimal. Making
+  this exact would mean replacing the algorithm the Excel file and the four screenshots explain,
+  that is a rewrite of the repository, not a bug fix.
 - **The `.5` string check.** `FillBuckets` decides how to round by formatting the quotient and
   asking whether the string ends in `.5`, with `CultureInfo.InvariantCulture` so that a German
   locale does not turn the point into a comma. It is a strange way to write "round half down", it is
