@@ -17,10 +17,12 @@ from the PDF and must keep printing `11`, `26`, `22` and `Maximum: 26`.
 The repository is an example program, it is **not** published as a NuGet package and it has **no**
 installer: no `GeneratePackageOnBuild`, no push script, no Inno Setup, no publish batch file.
 
-One solution `src/OptimizingWandererRoutes.sln` with exactly one project:
+One solution `src/OptimizingWandererRoutes.sln` with exactly two projects:
 
 - `src/OptimizingWandererRoutes/OptimizingWandererRoutes.csproj`, `OutputType` `Exe`, the whole
   program.
+- `src/OptimizingWandererRoutes.Tests/OptimizingWandererRoutes.Tests.csproj`, MSTest, added in
+  version 1.0.8.0.
 
 Layout inside `src/OptimizingWandererRoutes`:
 
@@ -37,6 +39,19 @@ Layout inside `src/OptimizingWandererRoutes`:
 - `in.txt`, `in2.txt`, `in3.txt`, `in4.txt`: sample inputs, see the quirk about the working
   directory below.
 
+Layout inside `src/OptimizingWandererRoutes.Tests`:
+
+- `OptimizerTests.cs`: the example of the PDF, the two uneven splits that used to produce an extra
+  day, the single day, the ignored surplus stages and the four error cases.
+- `BucketTests.cs`: the empty bucket, the order of the stages, removing from both ends and the rule
+  that the last stage of a day stays.
+- `TestDataProvider.cs`: the stages of the PDF example and the writer for the input files. Both test
+  classes use it.
+- `GlobalUsings.cs`: all usings of the test project.
+
+The tests need no fixture file. `OptimizerTests` writes its input files into its own directory below
+`Path.GetTempPath()` and deletes it afterwards, so a test run leaves the working tree untouched.
+
 Repository root: `Readme.md` (the only user documentation), `Changelog.md`, `License.txt` (MIT),
 `Hausaufgabe-Programmierer.pdf` (the task), `HowTheAlgorithmWorks.xlsx` and `Explanation1.png` to
 `Explanation4.png` (the algorithm walked through step by step, linked from the Readme),
@@ -49,10 +64,14 @@ folder.
 dotnet build src/OptimizingWandererRoutes.sln -c Release
 ```
 
-- Single target framework `net9.0`, no multi-targeting, no `RuntimeIdentifiers`. Nothing in the
-  code is Windows specific.
-- All build properties live directly in `OptimizingWandererRoutes.csproj`. There is **no**
-  `Directory.Build.props` in this repository.
+```powershell
+dotnet test src/OptimizingWandererRoutes.sln
+```
+
+- Single target framework `net9.0` in both projects, no multi-targeting, no `RuntimeIdentifiers`.
+  Nothing in the code is Windows specific.
+- All build properties live directly in the two `.csproj` files and are duplicated there. There is
+  **no** `Directory.Build.props` in this repository.
 - `TreatWarningsAsErrors` is enabled, so every warning breaks the build, NuGet warnings (`NU****`)
   from restore included. A clean build reports zero warnings, keep it that way.
 - `NU1803` (HTTP source usage during restore) is the one warning suppressed via `NoWarn`. Fix
@@ -63,9 +82,13 @@ dotnet build src/OptimizingWandererRoutes.sln -c Release
 - Restore needs nuget.org. If a private feed is configured globally on the machine and answers 404
   for public packages, restore fails with `NU1301`. Then build with an explicit source:
   `dotnet build src/OptimizingWandererRoutes.sln --source https://api.nuget.org/v3/index.json`.
-- There are no tests. A behaviour change is verified by running the program against the four
-  `in*.txt` files, `in2.txt` first, because that one has a known correct result in the PDF.
-  Never claim a run happened without running it.
+- Tests are MSTest, in the single test project `src/OptimizingWandererRoutes.Tests`, which follows
+  the same package set as the sibling repositories: `Microsoft.NET.Test.Sdk`, `MSTest.TestAdapter`,
+  `MSTest.TestFramework`, `coverlet.collector` and `GitVersion.MsBuild`. `dotnet test` runs 14
+  tests, they need no network.
+- Beyond the tests, a behaviour change is verified by running the program against the four
+  `in*.txt` files, `in2.txt` first, because that one has a known correct result in the PDF. Never
+  claim a run happened without running it.
 
 ## Code conventions
 
@@ -134,7 +157,9 @@ Do not silently "clean up" these, they are existing behaviour:
 - **The four catch blocks in `Program.cs` all do the same thing.** They print the message and wait,
   exactly like the final `catch (Exception)`. They only exist to name the expected error cases.
 - **`PrintResults` waits for input.** It ends with `Console.ReadLine`, so anything calling it
-  blocks until a line arrives. That matters for automated runs, pipe an empty line in.
+  blocks until a line arrives. That matters for automated runs, pipe an empty line in. It is also
+  the reason why `OptimizerTests` replaces `Console.In` along with `Console.Out`: the result can
+  only be checked by reading the console output back, and the run must not hang while doing it.
 - **AppVeyor badge without CI in the repository.** `Readme.md` links an AppVeyor build that is
   configured outside of this repository. There is no pipeline file here.
 - **`src/OptimizingWandererRoutes.sln.DotSettings`** is tracked and holds nothing but a ReSharper
