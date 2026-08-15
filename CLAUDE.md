@@ -68,7 +68,7 @@ dotnet build src/OptimizingWandererRoutes.sln -c Release
 dotnet test src/OptimizingWandererRoutes.sln
 ```
 
-- Single target framework `net9.0` in both projects, no multi-targeting, no `RuntimeIdentifiers`.
+- Single target framework `net10.0` in both projects, no multi-targeting, no `RuntimeIdentifiers`.
   Nothing in the code is Windows specific.
 - All build properties live directly in the two `.csproj` files and are duplicated there. There is
   **no** `Directory.Build.props` in this repository.
@@ -77,8 +77,8 @@ dotnet test src/OptimizingWandererRoutes.sln
 - `NU1803` (HTTP source usage during restore) is the one warning suppressed via `NoWarn`. Fix
   warnings instead of extending that list. `NuGetAudit` and `NuGetAuditMode=all` are on, so a
   vulnerable transitive package fails the build too.
-- Versions come from GitVersion.MsBuild out of the git tags, for example `1.0.8-1` for the first
-  commit after tag `1.0.7`. Never edit a version property or an assembly version by hand.
+- Versions come from GitVersion.MsBuild out of the git tags, for example `1.0.9-1` for the first
+  commit after tag `1.0.8`. Never edit a version property or an assembly version by hand.
 - Restore needs nuget.org. If a private feed is configured globally on the machine and answers 404
   for public packages, restore fails with `NU1301`. Then build with an explicit source:
   `dotnet build src/OptimizingWandererRoutes.sln --source https://api.nuget.org/v3/index.json`.
@@ -125,10 +125,10 @@ Do not silently "clean up" these, they are existing behaviour:
   and the program ended without a visible trace. Only a start from an already existing console
   worked, because the process inherits that console. Do not set it back.
 - **The input files are not copied to the output directory.** `in.txt` to `in4.txt` have no
-  `CopyToOutputDirectory`, so `bin/Release/net9.0` contains only the assemblies. The program
+  `CopyToOutputDirectory`, so `bin/Release/net10.0` contains only the assemblies. The program
   resolves the typed file name against the current working directory, which means it has to be
-  started from `src/OptimizingWandererRoutes` for a bare `in2.txt` to be found, or the full path has
-  to be typed.
+  started from `src/OptimizingWandererRoutes` for a bare `in2.txt` to be found, or the full path
+  has to be typed.
 - **The last day swallows the rest.** `FillBuckets` computes the elements per bucket once and then
   opens a new bucket whenever that count is reached, but only while fewer buckets than
   `numberOfDays` exist. As soon as the last day is open, every remaining stage is appended to it.
